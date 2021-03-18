@@ -21,7 +21,7 @@ public class JpaMain{
         tx.begin();
         //code
         try{
-            //test2
+            //test3
             Order order = new Order();
             //order.addOrderItem(new OrderItem());
             //이런식으로 양방향 연관관계를 사용하지 않고 단방향 연관관계로만으로도 충분히 insert할수 있다.

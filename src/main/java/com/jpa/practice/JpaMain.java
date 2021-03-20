@@ -7,6 +7,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
+import com.jpa.practice.domain.Book;
 import com.jpa.practice.domain.Order;
 import com.jpa.practice.domain.OrderItem;
 
@@ -21,16 +22,11 @@ public class JpaMain{
         tx.begin();
         //code
         try{
+            Book book = new Book();
+            book.setName("JPA");
+            book.setAuthor("최준호");
 
-            Order order = new Order();
-            //order.addOrderItem(new OrderItem());
-            //이런식으로 양방향 연관관계를 사용하지 않고 단방향 연관관계로만으로도 충분히 insert할수 있다.
-            em.persist(order);
-
-            OrderItem orderItem = new OrderItem();
-            orderItem.setOrder(order);
-
-            em.persist(orderItem);
+            em.persist(book);
 
             tx.commit();
         }catch(Exception e){

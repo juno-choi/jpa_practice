@@ -3,12 +3,7 @@ package com.jpa.practice.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Member extends BaseEntity{
@@ -18,9 +13,9 @@ public class Member extends BaseEntity{
     @Column(name = "MEMBER_ID")
     private Long id;
     private String name;
-    private String city;
-    private String street;
-    private String zipcode;
+
+    @Embedded
+    private Address address;
 
     //양방향 연관관계의 예이지 좋은 설계방식은 아니다.
     @OneToMany(mappedBy = "member")
@@ -42,28 +37,19 @@ public class Member extends BaseEntity{
         this.name = name;
     }
 
-    public String getCity() {
-        return this.city;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
-    public String getStreet() {
-        return this.street;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
-
-    public String getZipcode() {
-        return this.zipcode;
-    }
-
-    public void setZipcode(String zipcode) {
-        this.zipcode = zipcode;
-    }
-
 }
